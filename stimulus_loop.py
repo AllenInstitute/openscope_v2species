@@ -38,7 +38,7 @@
 import argparse
 import numpy as np
 from psychopy import monitors
-from camstim import MovieStim, SweepStim, Window, Warp, Foraging
+from camstim import MovieStim, SweepStim, Window, Warp
 import glob
 import logging
 
@@ -47,14 +47,14 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 # Paths to the movie clip files to load.
-movie_clip_files = glob.glob('data/*.npy')
+movie_clip_files = glob.glob('data/full_movies/*.npy')
 
 # For debugging use only:
 # Set path to shorter versions of the movie clip files (5 sec each).
 # If they don't exist yet make sure to download XXX.zp file first
 # and extract the "short_movies" folder to the data folder.
 # Should be used for development stages only. Comment out if not debugging!
-# movie_clip_files = glob.glob('data/low_res_short_movies/*.npy')
+# movie_clip_files = glob.glob('data/short_movies/*.npy')
 
 
 # MOVIE_ZIP_URL = "https://tigress-web.princeton.edu/~dmturner/allen_stimulus/movie_clips.zip"
@@ -65,8 +65,8 @@ movie_clip_files = glob.glob('data/*.npy')
 
 
 # Load the movie clip order for each experimental group as provided by the Ziv lab:
-order_groupA = (np.loadtxt('data/stimulus_orderings/movie_order_groupA.txt').astype(int))
-order_groupB = (np.loadtxt('data/stimulus_orderings/movie_order_groupB.txt').astype(int))
+order_groupA = (np.loadtxt('data_development/stimulus_orderings/movie_order_groupA.txt').astype(int))
+order_groupB = (np.loadtxt('data_development/stimulus_orderings/movie_order_groupB.txt').astype(int))
 
 def make_movie_stimulus(movie_paths, order, window):
     """Generate a Stimulus that plays a series of movie clips in a specified order."""
