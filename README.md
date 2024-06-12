@@ -34,7 +34,8 @@ The software requires two sets of input files. There should be a set of text fil
 # Running the scripts
   1. Activate the environment:
      <br>`conda activate allen_stimulus`
-  2. Run the stimulus_loop.py script (for group A input 0 and for group B input 1):
+     
+  3. Run the stimulus_loop.py script (for group A input 0 and for group B input 1):
      <br> `python stimulus_loop.py 0`
 
 # Stimulus design
