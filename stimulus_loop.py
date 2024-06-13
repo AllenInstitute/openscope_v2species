@@ -51,13 +51,13 @@ movie_clip_files = glob.glob('data/full_movies/*.npy')
 
 # For debugging use only:
 # Set path to shorter versions of the movie clip files (5 sec each).
-# If they don't exist yet make sure to download XXX.zp file first
+# If they don't exist yet make sure to download short_movies.zp file first
 # and extract the "short_movies" folder to the data folder.
 # Should be used for development stages only. Comment out if not debugging!
 # movie_clip_files = glob.glob('data/short_movies/*.npy')
 
 
-# MOVIE_ZIP_URL = "https://tigress-web.princeton.edu/~dmturner/allen_stimulus/movie_clips.zip"
+# MOVIE_ZIP_URL = "https://weizmannacil-my.sharepoint.com/:u:/g/personal/daniel_deitch_weizmann_ac_il/EbetUfh76FtBtDkpqd-7gAEB43WxjSCKutxW8sJtvIfCiA?e=TuFT8j"
 # for clip_path in movie_clip_files:
 #     if not os.path.exists(clip_path):
 #         raise ValueError("Movie clip file not found: {}. Make sure ".format(clip_path) +
@@ -85,13 +85,16 @@ def make_movie_stimulus(movie_paths, order, window):
     # Load each movie clip into its own MovieStim object. The display sequence will be set later so the clips play
     # in the correct order.
     stims = []
-    for i in np.unique(order):
+    unique_movies = np.unique(order)
+    num_movies = len(unique_movies)
+    for i in range(num_movies):
 
+        current_movie_id = unique_movies[i]
         # If the order index is less than the number of movie clips, load the movie clip.
         if i < len(movie_paths):
 
             # The movie clips should be 30 seconds long and should be played at 30 fps.
-            s = MovieStim(movie_path=movie_paths[i],
+            s = MovieStim(movie_path=movie_paths[current_movie_id],
                           window=window,
                           frame_length=1.0 / frame_rate,
                           size=(1920, 1080),
@@ -99,7 +102,6 @@ def make_movie_stimulus(movie_paths, order, window):
                           stop_time=None,
                           flip_v=True, runs=len(display_sequences[i]))
             s.set_display_sequence(display_sequences[i])
-
 
         else:
             raise ValueError("Order index is greater than the number of movie clips.")
@@ -144,6 +146,7 @@ if __name__ == "__main__":
 
     if args.group == 0:
         order = order_groupA
+
     elif args.group == 1:
         order = order_groupB
 
