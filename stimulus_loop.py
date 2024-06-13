@@ -65,8 +65,8 @@ movie_clip_files = glob.glob('data/full_movies/*.npy')
 
 
 # Load the movie clip order for each experimental group as provided by the Ziv lab:
-order_groupA = (np.loadtxt('data_development/stimulus_orderings/movie_order_groupA.txt').astype(int))
-order_groupB = (np.loadtxt('data_development/stimulus_orderings/movie_order_groupB.txt').astype(int))
+order_groupA = (np.loadtxt('data/stimulus_orderings/movie_order_groupA.txt').astype(int))
+order_groupB = (np.loadtxt('data/stimulus_orderings/movie_order_groupB.txt').astype(int))
 
 def make_movie_stimulus(movie_paths, order, window):
     """Generate a Stimulus that plays a series of movie clips in a specified order."""
