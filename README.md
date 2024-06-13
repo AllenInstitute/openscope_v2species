@@ -29,7 +29,7 @@ A temporary repository for the OpenScope visual loop project
 The software requires two sets of input files. There should be a set of text files present under `data/stimulus_orderings` that indicate the display order of video clips for different phases of the experiment.
 
 In addition, there should be a set of video clips (stored as raw .npy files).
-<br>These clips must be downloaded and extracted into the data folder from [full_movies.zip](https://weizmannacil-my.sharepoint.com/:u:/g/personal/daniel_deitch_weizmann_ac_il/EWhOP-X8pXJPnNVxuKn-GFUBe8lqn907TmDpa2u7dmF9Kw?e=JSLu76) and stored in the path `data/full_movies`.
+<br>These clips must be downloaded and extracted into the data folder from [full_movies.zip](https://weizmannacil-my.sharepoint.com/:u:/g/personal/daniel_deitch_weizmann_ac_il/EbetUfh76FtBtDkpqd-7gAEB43WxjSCKutxW8sJtvIfCiA?e=LPY5ND) and stored in the path `data/full_movies`.
 
 For debugging purposes please download shortened versions of the movie clips from [short_movies.zip](https://weizmannacil-my.sharepoint.com/:u:/g/personal/daniel_deitch_weizmann_ac_il/EZzpjTqcXG9Bn4Xe-u9pgXIBHzLbIWfmtd8xKI4lvwIwvQ?e=uLVxT0) and extracted into the data folder and store them in the path `data/short_movies`.
 
