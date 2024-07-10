@@ -291,20 +291,18 @@ if __name__ == "__main__":
             # end of mtrain part
 
     data_folder = json_params.get('data_folder', os.path.abspath("data"))
-    group = json_params.get('group', 2)
+    
+    # An integer representing the experiment group. Defaults to test group (value of 2).
+    group = json_params.get('stimulus_orderings', 'movie_order_groupTEST')
+    
     opto_disabled = json_params.get('disable_opto', True)
     dev_mode = json_params.get("dev_mode", True)
-    
+
     # Paths to the movie clip files to load.
     movie_clip_files = glob.glob(os.path.join(data_folder, 'full_movies','*.npy'))
 
     # Load the movie clip order for each experimental group as provided by the Ziv lab:
-    order_groupA = (np.loadtxt(os.path.join(data_folder, 'stimulus_orderings', 'movie_order_groupA.txt')).astype(int))
-    order_groupB = (np.loadtxt(os.path.join(data_folder, 'stimulus_orderings', 'movie_order_groupB.txt')).astype(int))
-    order_groupTEST = (np.loadtxt(os.path.join(data_folder, 'stimulus_orderings', 'movie_order_groupTEST.txt')).astype(int))
-
-    # An integer representing the experiment group. Defaults to group A (value of 0).
-
+    order = (np.loadtxt(os.path.join(data_folder, 'stimulus_orderings', group+".txt")).astype(int))
 
     dist = 15.0
     wid = 52.0
@@ -321,15 +319,6 @@ if __name__ == "__main__":
                     screen=0,
                     warp=Warp.Spherical
                     )
-
-    if group == 0:
-        order = order_groupA
-
-    elif group == 1:
-        order = order_groupB
-
-    elif group == 2:
-        order = order_groupTEST
 
     ss = make_movie_stimulus(movie_clip_files, order, window)
     
