@@ -85,14 +85,43 @@ def make_movie_stimulus(movie_paths, order, window):
 
         stims.append(s)
 
-    stim = SweepStim(window,
-                     stimuli=stims,
-                     # pre_blank_sec=1,
-                     # post_blank_sec=1,
-                     params={},
-                     )
+    last_time = all_starts[-1] + movie_length
 
-    return stim
+    return stims, last_time
+
+def create_receptive_field_mapping(number_runs = 15):
+    x = np.arange(-40,45,10)
+    y = np.arange(-40,45,10)
+    position = []
+    for i in x:
+        for j in y:
+            position.append([i,j])
+
+    stimulus = Stimulus(visual.GratingStim(window,
+                        units='deg',
+                        size=20,
+                        mask="circle",
+                        texRes=256,
+                        sf=0.1,
+                        ),
+        sweep_params={
+                'Pos':(position, 0),
+                'Contrast': ([0.8], 4),
+                'TF': ([4.0], 1),
+                'SF': ([0.08], 2),
+                'Ori': ([0,45,90], 3),
+                },
+        sweep_length=0.25,
+        start_time=0.0,
+        blank_length=0.0,
+        blank_sweeps=0,
+        runs=number_runs,
+        shuffle=True,
+        save_sweep_table=True,
+        )
+    stimulus.stim_path = r"C:\\not_a_stim_script\\create_receptive_field_mapping.stim"
+
+    return stimulus
 
 
 if __name__ == "__main__":
@@ -142,8 +171,21 @@ if __name__ == "__main__":
                     warp=Warp.Spherical
                     )
 
-    ss = make_movie_stimulus(movie_clip_files, order, window)
+    stims, last_time = make_movie_stimulus(movie_clip_files, order, window)
     
+    # We create the receptive field mapping stimulus
+    gabors_rf_20 = create_receptive_field_mapping(8)
+    gabors_rf_20_ds = [(last_time, last_time+640)]
+    gabors_rf_20.set_display_sequence(gabors_rf_20_ds)
+    stims.append(gabors_rf_20)
+
+    ss = SweepStim(window,
+                     stimuli=stims,
+                     # pre_blank_sec=1,
+                     # post_blank_sec=1,
+                     params={},
+                     )
+
     # add in foraging so we can track wheel, potentially give rewards, etc
     f = Foraging(window = window,
                     auto_update = False,
