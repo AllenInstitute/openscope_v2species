@@ -1,5 +1,5 @@
-# OpenScope visual loop:
-A temporary repository for the OpenScope visual loop project
+# OpenScope V2 species:
+A temporary repository for the OpenScope V2 species project
 
 
 # Installation
@@ -37,44 +37,9 @@ For debugging purposes please download shortened versions of the movie clips fro
   1. Activate the environment:
      <br>`conda activate allen_stimulus`
      
-  3. Run the stimulus_loop.py script (for group A input 0 and for group B input 1):
-     <br> `python stimulus_loop.py 0`
+  3. Run the stimulus_v2species.py script:
+     <br> `python stimulus_v2species.py`
 
-# Debugging mode
-To run the script `stimulus_loop.py` in debugging mode, comment out line 50 and uncomment line 57.
-<br>This will change the path of the movie clips from their full length version (i.e., 30 sec) to their shortened version (5 sec) with helpful labels.
 
 # Stimulus design
-The experiment consists of two phases in which different sets of 30 sec long natural movies will be presented:
-   - Phase 1 consists of two natural movies (i.e., movie01 and movie02) and a constant gray screen (i.e., movie00).
-   - Phase 2 consists of 50 natural movies (i.e., movie03-movie52) and a constant gray screen (i.e., movie00).
-
-Animals are assigned into two groups (A and B), each presented with the movies in different order.
-<br>In both groups, a total of 230 movies will be presented for a total time of 115 min:
-  1. For group A:
-     - Phase 1:
-       - 50 presentations of movie01 (25 min)
-       - 10 presentations of movie00 (5 min)
-       - 50 alternations between movie01 and movie02 (25 min)
-       - 10 presentations of movie00 (5 min)
-
-     - Phase 2:
-       - 20 presentations of movie03 (10 min)
-       - 10 presentations of movie00 (5 min)
-       - 50 sequential presentations of movie03 to movie52 (25 min)
-       - 10 presentations of movie00 (5 min)
-       - 20 alternations between movie03 and movie52 (10 min)
-
-  2. For group B:
-     - Phase 1:
-       - 50 alternations between movie01 and movie02 (25 min)
-       -  10 presentations of movie00 (5 min)
-       -  50 presentations of movie01 (25 min)
-       -  10 presentations of movie00 (5 min)
-
-     - Phase 2:
-       - 20 presentations of movie03 (10 min)
-       - 10 presentations of movie00 (5 min)
-       - 50 presentations of movie52 (25 min)
-       - 10 presentations of movie00 (5 min)
-       - 20 alternations between movie03 and movie52 (10 min)
+The experiment consists of ...
