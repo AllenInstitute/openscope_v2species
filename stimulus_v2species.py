@@ -111,7 +111,7 @@ if __name__ == "__main__":
         my_monitor.setDistance(dist)
         my_monitor.saveMon()
         win = Window(size=[800,600], # [1024,768],
-            fullscr=True,
+            fullscr=False,
             screen=0,
             monitor= my_monitor,
             warp=Warp.Spherical,
@@ -161,7 +161,7 @@ if __name__ == "__main__":
 
     pre_blank = 0
     post_blank = 0
-    ss = SweepStim(window,
+    ss = SweepStim(win,
                      stimuli=All_stim,
                      pre_blank_sec= pre_blank,
                      post_blank_sec= post_blank,
@@ -169,7 +169,7 @@ if __name__ == "__main__":
                      )
 
     # add in foraging so we can track wheel, potentially give rewards, etc
-    f = Foraging(window = window,
+    f = Foraging(window = win,
                     auto_update = False,
                     params= {}
                     )
