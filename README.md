@@ -52,10 +52,10 @@ Due to technical constraints, the duration of 2P recordings is more limited than
 ![Overview of 2p and ephys stimuli](images/stim_overview.png)
 
 For stimulus_v2species_2p.py, these parameters are currently hard-coded:
-    nb_runs_ephys_rf = 10
-    nb_run_gratings = 15
+* nb_runs_ephys_rf = 10
+* nb_run_gratings = 15
 
 For stimulus_v2species_ephys.py, these parameters are currently hard-coded:
-    nb_runs_ephys_rf = 20
-    nb_run_gratings = 15
-    nb_run_flash = 150
+* nb_runs_ephys_rf = 20
+* nb_run_gratings = 15
+* nb_run_flash = 150
