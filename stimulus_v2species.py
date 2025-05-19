@@ -15,8 +15,8 @@ import yaml
 import os
 from camstim.sweepstim import Stimulus
 
-
-def create_receptive_field_mapping(window, number_runs = 15):
+## This is the RF mapping stim
+def create_receptive_field_mapping(window, number_runs = 5):
     x = np.arange(-40,45,10)
     y = np.arange(-40,45,10)
     position = []
@@ -50,7 +50,8 @@ def create_receptive_field_mapping(window, number_runs = 15):
 
     return stimulus
 
-def create_gratingStim(window, number_runs = 15):
+## This is drifting gratings
+def create_gratingStim(window, number_runs = 5):
     stimulus_grating = Stimulus(visual.GratingStim(
                         window,
                         pos=(0, 0),
@@ -77,6 +78,35 @@ def create_gratingStim(window, number_runs = 15):
     stimulus_grating.stim_path = r"C:\\not_a_stim_script\\drifting_gratings_field_block.stim"
 
     return stimulus_grating
+
+## This is drifting graints
+def create_full_field_flash(window, number_runs = 5):
+    stimulus_flash = Stimulus(visual.GratingStim(
+                        window,
+                        pos=(0, 0),
+                        units='deg',
+                        size=(250, 250),
+                        mask="None",
+                        texRes=256,
+                        sf=0.0,
+                        ),
+        sweep_params={
+                'Contrast': ([0.8], 0),
+                'TF': ([4.0], 1),
+                'SF': ([0.00], 2),
+                'Ori': (range(0, 360, 180), 3),
+                },
+        sweep_length=1,
+        start_time=0.0,
+        blank_length=0.5,
+        blank_sweeps=0,
+        runs=number_runs,
+        shuffle=True,
+        save_sweep_table=True,
+        )
+    stimulus_flash.stim_path = r"C:\\not_a_stim_script\\flash_field_block.stim"
+
+    return stimulus_flash
 
 
 if __name__ == "__main__":
@@ -129,8 +159,10 @@ if __name__ == "__main__":
 
     nb_runs_ephys_rf = 12
     nb_run_gratings = 22
+    nb_run_flash = 10
     ephys_rf_stim = create_receptive_field_mapping(win, number_runs=nb_runs_ephys_rf)
     drifting_grating_stim = create_gratingStim(win, number_runs=nb_run_gratings)
+    flash_stim = create_full_field_flash(win, number_runs=nb_run_flash)
 
     All_stim = []
 
@@ -158,6 +190,22 @@ if __name__ == "__main__":
     
     All_stim.append(drifting_grating_stim)
     print("length_drifting_grating_seconds: ",length_drifting_grating_seconds)
+
+
+    # flash_stim
+    if num_reps == 1:
+        length_flash_seconds = 10
+    else:
+        length_flash_seconds = 8*1.5*nb_run_flash
+
+    current_time = current_time+length_flash_seconds+inter_block_interval
+
+    flash_stim.set_display_sequence([(current_time, current_time+length_flash_seconds)])
+    
+    All_stim.append(flash_stim)
+    print("length_flash_seconds: ",length_flash_seconds)
+
+
 
     pre_blank = 0
     post_blank = 0
