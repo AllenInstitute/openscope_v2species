@@ -66,7 +66,7 @@ def create_gratingStim(window, number_runs = 5):
                 'Contrast': ([0.8], 0),
                 'TF': ([1.0, 2.0, 4.0, 8.0, 15.0], 1),
                 'SF': ([0.02, 0.04, 0.08, 0.16, 0.32], 2),
-                'Ori': (range(0, 360, 90), 3),
+                'Ori': (range(0, 180, 45), 3),
                 },
         sweep_length=1,
         start_time=0.0,
@@ -128,7 +128,7 @@ if __name__ == "__main__":
     
     # An integer representing the experiment group. Defaults to test group (value of 2).
     dev_mode = json_params.get('dev_mode', True)
-    num_reps = json_params.get('num_reps', 3) 
+    num_reps = json_params.get('num_reps', 1) 
     print("num_reps is: ",num_reps)
     inter_block_interval = json_params.get('inter_block_interval', 10)
 
