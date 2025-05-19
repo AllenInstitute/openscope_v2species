@@ -29,8 +29,11 @@ A temporary repository for the OpenScope V2 species project
   1. Activate the environment:
      <br>`conda activate allen_stimulus`
      
-  3. Run the stimulus_v2species.py script:
-     <br> `python stimulus_v2species.py`
+  3. Run the stimulus_v2species_2p.py script for 2P stimuli:
+     <br> `python stimulus_v2species_2p.py`
+
+  4. Run the stimulus_v2species_2p.py script for ephys stimuli:
+     <br> `python stimulus_v2species_ephys.py`
 
 
 # Stimulus design
@@ -47,3 +50,12 @@ Full-field flash: Full-field bright or dark flashes.
 Due to technical constraints, the duration of 2P recordings is more limited than Neuropixels recordings, so the number of repeated trials varies by stimulus modality.
 
 ![Overview of 2p and ephys stimuli](images/stim_overview.png)
+
+For stimulus_v2species_2p.py, these parameters are currently hard-coded:
+    nb_runs_ephys_rf = 10
+    nb_run_gratings = 15
+
+For stimulus_v2species_ephys.py, these parameters are currently hard-coded:
+    nb_runs_ephys_rf = 20
+    nb_run_gratings = 15
+    nb_run_flash = 150
