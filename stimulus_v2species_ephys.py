@@ -159,10 +159,11 @@ if __name__ == "__main__":
     
     # An integer representing the experiment group. Defaults to test group (value of 2).
     dev_mode = json_params.get('dev_mode', True)
-    num_reps = json_params.get('num_reps', 1) 
-    print("num_reps is: ",num_reps)
 
     inter_block_interval = json_params.get('inter_block_interval', 10)
+    nb_runs_ephys_rf = json_params.get('nb_runs_ephys_rf', 20)
+    nb_run_gratings = json_params.get('nb_run_gratings', 15)
+    nb_run_flash = json_params.get('nb_run_flash', 150)
 
     dist = 15.0
     wid = 52.0
@@ -189,11 +190,6 @@ if __name__ == "__main__":
             warp=Warp.Spherical,
         )
 
-
-    nb_runs_ephys_rf = 20
-    nb_run_gratings = 15
-    nb_run_flash = 150
-
     ephys_rf_stim = create_receptive_field_mapping(win, number_runs=nb_runs_ephys_rf)
     drifting_grating_stim = create_gratingStim(win, number_runs=nb_run_gratings)
     flash_stim = create_full_field_flash(win, number_runs=nb_run_flash)
@@ -214,7 +210,7 @@ if __name__ == "__main__":
 
     # Add RF code from ephys
     current_time = 0
-    if num_reps == 1:
+    if dev_mode:
         length_rf_seconds = 10 #for testing purposes
     else: 
         length_rf_seconds = (
@@ -229,7 +225,7 @@ if __name__ == "__main__":
     print("length_rf_minutes: ",length_rf_seconds/60)
 
     # drifting_grating_stim
-    if num_reps == 1:
+    if dev_mode:
         length_drifting_grating_seconds = 10
     else:
         length_drifting_grating_seconds = (
@@ -247,7 +243,7 @@ if __name__ == "__main__":
 
 
     # flash_stim
-    if num_reps == 1:
+    if dev_mode:
         length_flash_seconds = 10
     else:
         length_flash_seconds = (

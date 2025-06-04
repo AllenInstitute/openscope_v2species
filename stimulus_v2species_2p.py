@@ -131,6 +131,8 @@ if __name__ == "__main__":
     num_reps = json_params.get('num_reps', 1) 
     print("num_reps is: ",num_reps)
     inter_block_interval = json_params.get('inter_block_interval', 10)
+    nb_runs_ephys_rf = json_params.get('nb_runs_ephys_rf', 10)
+    nb_run_gratings = json_params.get('nb_run_gratings', 15)
 
     dist = 15.0
     wid = 52.0
@@ -157,12 +159,6 @@ if __name__ == "__main__":
             warp=Warp.Spherical,
         )
 
-
-    #define number of trials for each stim type    
-    nb_runs_ephys_rf = 10
-    nb_run_gratings = 15
-
-
     ephys_rf_stim = create_receptive_field_mapping(win, number_runs=nb_runs_ephys_rf)
     drifting_grating_stim = create_gratingStim(win, number_runs=nb_run_gratings)
 
@@ -178,7 +174,7 @@ if __name__ == "__main__":
 
     # Add RF code from ephys
     current_time = 0
-    if num_reps == 1:
+    if dev_mode:
         length_rf_seconds = 10 #for testing purposes
     else: 
         length_rf_seconds = (
@@ -193,7 +189,7 @@ if __name__ == "__main__":
     print("length_rf_minutes: ",length_rf_seconds/60)
 
     # drifting_grating_stim
-    if num_reps == 1:
+    if dev_mode:
         length_drifting_grating_seconds = 10
     else:
         length_drifting_grating_seconds = (
@@ -208,9 +204,6 @@ if __name__ == "__main__":
     
     All_stim.append(drifting_grating_stim)
     print("length_drifting_grating_minutes: ",length_drifting_grating_seconds/60)
-
-
-
 
     pre_blank = 0
     post_blank = 0
