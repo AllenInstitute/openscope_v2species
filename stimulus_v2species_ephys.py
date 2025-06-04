@@ -164,6 +164,7 @@ if __name__ == "__main__":
     nb_runs_ephys_rf = json_params.get('nb_runs_ephys_rf', 20)
     nb_run_gratings = json_params.get('nb_run_gratings', 15)
     nb_run_flash = json_params.get('nb_run_flash', 150)
+    post_blank = json_params.get('post_blank', 0)
 
     dist = 15.0
     wid = 52.0
@@ -262,7 +263,7 @@ if __name__ == "__main__":
 
 
     pre_blank = 0
-    post_blank = 0
+    post_blank = post_blank
     ss = SweepStim(win,
                      stimuli=All_stim,
                      pre_blank_sec= pre_blank,
