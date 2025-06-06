@@ -80,7 +80,7 @@ def create_gratingStim(window, number_runs = 5):
 
     return stimulus_grating
 
-## This is drifting gratings
+## This is full-field flash
 def create_full_field_flash(window, number_runs = 5):
     stimulus_flash = Stimulus(visual.GratingStim(
                         window,
@@ -88,14 +88,14 @@ def create_full_field_flash(window, number_runs = 5):
                         units='deg',
                         size=(250, 250),
                         mask="None",
-                        texRes=256,
+                        tex='sin',
                         sf=0.0,
                         ),
         sweep_params={
-                'Contrast': ([0.8], 0),
-                'TF': ([4.0], 1),
+                'Contrast': ([1.0, -1.0], 0),  # +1 = white, -1 = black on gray bg
+                'TF': ([0.0], 1),
                 'SF': ([0.00], 2),
-                'Ori': (range(0, 180, 45), 3),
+                'Ori': ([0], 3),
                 },
         sweep_length=0.25,
         start_time=0.0,
@@ -108,6 +108,8 @@ def create_full_field_flash(window, number_runs = 5):
     stimulus_flash.stim_path = r"C:\\not_a_stim_script\\flash_field_block.stim"
 
     return stimulus_flash
+
+
 
 
 #this gets total conditions for stimuli defined above
@@ -190,9 +192,9 @@ if __name__ == "__main__":
         )
 
 
-    nb_runs_ephys_rf = 20
-    nb_run_gratings = 15
-    nb_run_flash = 150
+    nb_runs_ephys_rf = 1
+    nb_run_gratings = 1
+    nb_run_flash = 100
 
     ephys_rf_stim = create_receptive_field_mapping(win, number_runs=nb_runs_ephys_rf)
     drifting_grating_stim = create_gratingStim(win, number_runs=nb_run_gratings)
