@@ -88,14 +88,14 @@ def create_full_field_flash(window, number_runs = 5):
                         units='deg',
                         size=(250, 250),
                         mask="None",
-                        texRes=256,
+                        tex='sin',
                         sf=0.0,
                         ),
         sweep_params={
-                'Contrast': ([0.8], 0),
-                'TF': ([4.0], 1),
+                'Contrast': ([1.0, -1.0], 0),  # +1 = white, -1 = black on gray bg
+                'TF': ([0.0], 1),
                 'SF': ([0.00], 2),
-                'Ori': (range(0, 180, 45), 3),
+                'Ori': ([0], 3),
                 },
         sweep_length=0.25,
         start_time=0.0,
