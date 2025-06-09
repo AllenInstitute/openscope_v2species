@@ -221,7 +221,6 @@ if __name__ == "__main__":
             )
 
     ephys_rf_stim.set_display_sequence([(current_time, current_time+length_rf_seconds)])
-
     All_stim.append(ephys_rf_stim)
     print("length_rf_minutes: ",length_rf_seconds/60)
 
@@ -236,9 +235,7 @@ if __name__ == "__main__":
             )
 
     current_time = current_time+length_rf_seconds+inter_block_interval
-
     drifting_grating_stim.set_display_sequence([(current_time, current_time+length_drifting_grating_seconds)])
-    
     All_stim.append(drifting_grating_stim)
     print("length_drifting_grating_minutes: ",length_drifting_grating_seconds/60)
 
@@ -253,10 +250,8 @@ if __name__ == "__main__":
                 *nb_run_flash
                 )    
 
-        current_time = current_time+length_flash_seconds+inter_block_interval
-
+        current_time = current_time+length_drifting_grating_seconds+inter_block_interval
         flash_stim.set_display_sequence([(current_time, current_time+length_flash_seconds)])
-        
         All_stim.append(flash_stim)
         print("length_flash_minutes: ",length_flash_seconds/60)
 
